@@ -9,7 +9,7 @@ func init() {
 	jsoniter.RegisterExtension(&extension{})
 }
 
-var chanType = reflect2.TypeOf((*iChan)(nil)).(reflect2.PtrType)
+var chanType = reflect2.TypeOf((*iChan)(nil)).(reflect2.PtrType).Elem()
 
 type extension struct {
 	jsoniter.DummyExtension

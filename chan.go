@@ -13,8 +13,13 @@ type Chan[T any] chan T
 
 func (c Chan[T]) encode(stream *jsoniter.Stream) {
 	stream.WriteArrayStart()
+	count := 0
 	for v := range c {
+		if count > 0 {
+			stream.WriteMore()
+		}
 		stream.WriteVal(v)
+		count++
 	}
 	stream.WriteArrayEnd()
 }
